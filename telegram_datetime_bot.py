@@ -5,6 +5,7 @@ from datetime import datetime
 import locale
 import requests
 import xml.etree.ElementTree as ET
+import os
 
 # Установим русскую локаль для дней недели
 try:
@@ -12,9 +13,9 @@ try:
 except locale.Error:
     pass  # На MacOS может не быть русской локали, тогда будет на английском
 
-TOKEN = '7434142208:AAHCK06yuHNvkWSC-lZha17j-pXn9a9pwRY'
-OPENWEATHER_API_KEY = 'd99955133a1050ac9409462b1a53bfd3'
-CITY = 'Moscow'
+TOKEN = os.environ.get('TOKEN')
+OPENWEATHER_API_KEY = os.environ.get('OPENWEATHER_API_KEY')
+CITY = os.environ.get('CITY', 'Moscow')
 
 async def reply_with_datetime(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print('Получено сообщение!')
